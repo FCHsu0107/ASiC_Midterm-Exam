@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var forwardBtn: UIButton!
     
-    @objc dynamic var landscapeStatus: Bool = false
+    @objc dynamic var landscapeStatus = false
     
     var observer: NSKeyValueObservation!
     
@@ -51,7 +51,15 @@ class ViewController: UIViewController {
         
         timeSlider.value = 0
         
-//        self.observer = self.observe(\.landscapeStatus, options: .new, changeHandler: <#T##(ViewController, NSKeyValueObservedChange<Value>) -> Void#>)
+        self.observer = self.observe(\.landscapeStatus, options: .new) { (object, change) in
+            guard let status = change.newValue else { return }
+            if status == true {
+                self.fullScreenBtn.isSelected = true
+            } else {
+                self.fullScreenBtn.isSelected = false
+            }
+        }
+        
         determineMyDeviceOrientation()
         
         
