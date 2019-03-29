@@ -21,8 +21,10 @@ class JQButton {
     
     }
     
-    func setImage(button: UIButton, normalImage: UIImage?, selectedImage: UIImage?){
+    func setImage(button: UIButton, normalImage: UIImage?, selectedImage: UIImage?, color: UIColor) {
         button.setImage(normalImage, for: .normal)
         button.setImage(selectedImage, for: .selected)
+        button.tintColor = color
     }
+
 }

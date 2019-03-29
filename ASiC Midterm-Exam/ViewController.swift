@@ -31,16 +31,55 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var muteBtn: UIButton!
     
+    @IBOutlet weak var backwardBtn: UIButton!
+    
+    @IBOutlet weak var forwardBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         JQButton.shared.buttonBorder(button: searchBtn)
         
-        JQButton.shared.setImage(button: playBtn, normalImage: UIImage.asset(.stop), selectedImage: UIImage.asset(.play_button))
+        JQButton.shared.setImage(button: playBtn, normalImage: UIImage.asset(.stop), selectedImage: UIImage.asset(.play_button), color: UIColor.black)
         
-        JQButton.shared.setImage(button: fullScreenBtn, normalImage: UIImage.asset(.full_screen_button), selectedImage: UIImage.asset(.full_screen_exit))
+        JQButton.shared.setImage(button: fullScreenBtn, normalImage: UIImage.asset(.full_screen_button), selectedImage: UIImage.asset(.full_screen_exit), color: UIColor.black)
         
-        JQButton.shared.setImage(button: muteBtn, normalImage: UIImage.asset(.volume_up), selectedImage: UIImage.asset(.volume_off))
+        JQButton.shared.setImage(button: muteBtn, normalImage: UIImage.asset(.volume_up), selectedImage: UIImage.asset(.volume_off), color: UIColor.black)
+        
         timeSlider.value = 0
+        
+
+    }
+    
+
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            if UIApplication.shared.statusBarOrientation.isLandscape {
+                // activate landscape changes
+                self.statusLebel.textColor = UIColor.white
+                self.videoView.backgroundColor = UIColor.gray
+                self.durationLabel.textColor = UIColor.white
+                self.currentTimeLabel.textColor = UIColor.white
+                self.navigationController?.setNavigationBarHidden(true, animated: false)
+                self.playBtn.tintColor = UIColor.white
+                self.muteBtn.tintColor = UIColor.white
+                self.fullScreenBtn.tintColor = UIColor.white
+                self.backwardBtn.tintColor = UIColor.white
+                self.forwardBtn.tintColor = UIColor.white
+                
+            } else {
+                // activate portrait changes
+                self.statusLebel.textColor = UIColor.gray
+                self.videoView.backgroundColor = UIColor.white
+                self.durationLabel.textColor = UIColor.gray
+                self.currentTimeLabel.textColor = UIColor.gray
+                self.navigationController?.setNavigationBarHidden(false, animated: false)
+                self.playBtn.tintColor = UIColor.black
+                self.muteBtn.tintColor = UIColor.black
+                self.fullScreenBtn.tintColor = UIColor.black
+                self.backwardBtn.tintColor = UIColor.black
+                self.forwardBtn.tintColor = UIColor.black
+            }
+        })
     }
     
     //status bar style
@@ -76,6 +115,7 @@ class ViewController: UIViewController {
         videoView.isHidden = false
         
         if searchTextField.text?.isEmpty == true {
+            statusLebel.isHidden = true
             videoView.configure(url: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
             videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
             addTimeObserver()
@@ -88,6 +128,7 @@ class ViewController: UIViewController {
             
             guard let searchUrl: String = searchTextField.text else { return }
             videoView.isHidden = false
+            statusLebel.isHidden = true
             videoView.configure(url: searchUrl)
             videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
             addTimeObserver()
@@ -97,7 +138,6 @@ class ViewController: UIViewController {
     }
     
     @IBAction func playPressed(_ sender: Any) {
-        
         if playBtn.isSelected == true {
             
             videoView.play()
@@ -113,6 +153,7 @@ class ViewController: UIViewController {
     
     @IBAction func muteBtn(_ sender: Any) {
         guard let player = videoView.player else { return }
+        
         if muteBtn.isSelected == true {
             player.isMuted = false
             muteBtn.isSelected = false
