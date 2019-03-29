@@ -85,4 +85,17 @@ class VideoView: UIView {
             player?.play()
         }
     }
+    
+    func getTimeString(from time: CMTime) -> String {
+        let totalSecond = CMTimeGetSeconds(time)
+        let hours = Int(totalSecond/3600)
+        let minutes = Int(totalSecond/60) % 60
+        let seconds = Int(totalSecond.truncatingRemainder(dividingBy: 60))
+        
+        if hours > 0 {
+            return String(format: "%i:%02i:%02i", arguments: [hours,minutes,seconds])
+        } else {
+            return String(format: "%02i:%02i", arguments: [minutes,seconds])
+        }
+    }
 }

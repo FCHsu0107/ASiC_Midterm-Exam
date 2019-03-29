@@ -157,11 +157,11 @@
                     <navigationItem key="navigationItem" title="Viedo Player" id="cic-0R-ggd"/>
                     <connections>
                         <outlet property="currentTimeLabel" destination="vcW-sD-q9l" id="4Qx-g4-qYP"/>
+                        <outlet property="durationLabel" destination="lkp-KQ-gYB" id="rDu-ho-SWp"/>
                         <outlet property="playBtn" destination="FLt-q3-lBt" id="RYO-7l-Ity"/>
                         <outlet property="searchBtn" destination="Pkf-lr-ESO" id="4cC-6L-ogY"/>
                         <outlet property="searchTextField" destination="az2-op-d58" id="QBY-yg-uCB"/>
                         <outlet property="timeSlider" destination="V7z-fM-8u5" id="uKf-yN-DD6"/>
-                        <outlet property="totalTimeLabel" destination="lkp-KQ-gYB" id="rDu-ho-SWp"/>
                         <outlet property="videoView" destination="ikJ-Nk-d4G" id="QNe-Mm-Ubr"/>
                     </connections>
                 </viewController>
