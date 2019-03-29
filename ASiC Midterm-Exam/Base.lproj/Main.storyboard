@@ -89,6 +89,9 @@
                                     <constraint firstAttribute="height" constant="24" id="akY-1z-5GP"/>
                                 </constraints>
                                 <state key="normal" image="volume_up"/>
+                                <connections>
+                                    <action selector="muteBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4GX-iR-Jec"/>
+                                </connections>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="V7z-fM-8u5">
                                 <rect key="frame" x="59.5" y="553" width="256" height="31"/>
@@ -158,6 +161,8 @@
                     <connections>
                         <outlet property="currentTimeLabel" destination="vcW-sD-q9l" id="4Qx-g4-qYP"/>
                         <outlet property="durationLabel" destination="lkp-KQ-gYB" id="rDu-ho-SWp"/>
+                        <outlet property="fullScreenBtn" destination="iLw-pI-ZFo" id="zwv-cI-bKg"/>
+                        <outlet property="muteBtn" destination="aq8-jA-2Uo" id="hAQ-1F-ERc"/>
                         <outlet property="playBtn" destination="FLt-q3-lBt" id="RYO-7l-Ity"/>
                         <outlet property="searchBtn" destination="Pkf-lr-ESO" id="4cC-6L-ogY"/>
                         <outlet property="searchTextField" destination="az2-op-d58" id="QBY-yg-uCB"/>

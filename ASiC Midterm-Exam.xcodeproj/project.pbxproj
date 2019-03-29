@@ -62,10 +62,10 @@
 			children = (
 				B98248C3224DC42900D834DF /* Extension */,
 				B98248C0224DB91400D834DF /* Model */,
-				B98248AC224DAD0E00D834DF /* AppDelegate.swift */,
 				B98248AE224DAD0E00D834DF /* ViewController.swift */,
 				B98248B0224DAD0E00D834DF /* Main.storyboard */,
 				B98248B3224DAD0F00D834DF /* Assets.xcassets */,
+				B98248AC224DAD0E00D834DF /* AppDelegate.swift */,
 				B98248B5224DAD0F00D834DF /* LaunchScreen.storyboard */,
 				B98248B8224DAD0F00D834DF /* Info.plist */,
 			);

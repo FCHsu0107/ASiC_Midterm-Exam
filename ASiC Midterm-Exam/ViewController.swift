@@ -27,12 +27,19 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var playBtn: UIButton!
     
+    @IBOutlet weak var fullScreenBtn: UIButton!
+    
+    @IBOutlet weak var muteBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         JQButton.shared.buttonBorder(button: searchBtn)
         
         JQButton.shared.setImage(button: playBtn, normalImage: UIImage.asset(.stop), selectedImage: UIImage.asset(.play_button))
         
+        JQButton.shared.setImage(button: fullScreenBtn, normalImage: UIImage.asset(.full_screen_button), selectedImage: UIImage.asset(.full_screen_exit))
+        
+        JQButton.shared.setImage(button: muteBtn, normalImage: UIImage.asset(.volume_up), selectedImage: UIImage.asset(.volume_off))
         timeSlider.value = 0
     }
     
@@ -62,7 +69,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func searchAction(_ sender: Any) {
-        videoView.pause()
+        videoView.stop()
+        playBtn.isSelected = false
+        muteBtn.isSelected = false
+        
         videoView.isHidden = false
         
         if searchTextField.text?.isEmpty == true {
@@ -101,6 +111,17 @@ class ViewController: UIViewController {
         }
     }
     
+    @IBAction func muteBtn(_ sender: Any) {
+        guard let player = videoView.player else { return }
+        if muteBtn.isSelected == true {
+            player.isMuted = false
+            muteBtn.isSelected = false
+        } else {
+            player.isMuted = true
+            muteBtn.isSelected = true
+        }
+    }
+    
     @IBAction func forwardPressed(_ sender: Any) {
         videoView.forward(time: 10.0)
     }
@@ -111,8 +132,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func silderValueChange(_ sender: UISlider) {
-        guard let player = videoView.player else { return }
-        player.seek(to: CMTimeMake(value: Int64(sender.value * 1000), timescale: 1000))
+        videoView.seek(to: CMTimeMake(value: Int64(sender.value * 1000), timescale: 1000))
     }
     
 }

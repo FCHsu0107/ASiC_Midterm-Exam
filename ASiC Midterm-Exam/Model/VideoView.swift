@@ -52,6 +52,10 @@ class VideoView: UIView {
         player?.seek(to: CMTime.zero)
     }
     
+    func seek(to: CMTime) {
+        player?.seek(to: to)
+    }
+    
     func forward(time: Double){
         guard let player = player else { return }
         guard let duration = player.currentItem?.duration else { return }
