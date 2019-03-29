@@ -66,6 +66,10 @@ class ViewController: UIViewController {
                 self.backwardBtn.tintColor = UIColor.white
                 self.forwardBtn.tintColor = UIColor.white
                 
+                guard let playerlayer = self.videoView.playerLayer else { return }
+                playerlayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                playerlayer.frame = self.view.bounds
+                
             } else {
                 // activate portrait changes
                 self.statusLebel.textColor = UIColor.gray
@@ -78,6 +82,9 @@ class ViewController: UIViewController {
                 self.fullScreenBtn.tintColor = UIColor.black
                 self.backwardBtn.tintColor = UIColor.black
                 self.forwardBtn.tintColor = UIColor.black
+                
+                guard let playerlayer = self.videoView.playerLayer else { return }
+                playerlayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 211 * UIScreen.main.bounds.width/375)
             }
         })
     }

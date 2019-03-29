@@ -52,7 +52,7 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-q3-lBt">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-q3-lBt">
                                 <rect key="frame" x="148" y="514" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="4yt-2E-J4a"/>
@@ -92,7 +92,9 @@
                                     <constraint firstAttribute="height" constant="24" id="akY-1z-5GP"/>
                                 </constraints>
                                 <color key="tintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" image="volume_up"/>
+                                <state key="normal" image="volume_up">
+                                    <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="muteBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4GX-iR-Jec"/>
                                 </connections>
