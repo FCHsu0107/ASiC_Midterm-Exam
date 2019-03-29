@@ -35,6 +35,10 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var forwardBtn: UIButton!
     
+    @objc dynamic var landscapeStatus: Bool = false
+    
+    var observer: NSKeyValueObservation!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         JQButton.shared.buttonBorder(button: searchBtn)
@@ -47,48 +51,79 @@ class ViewController: UIViewController {
         
         timeSlider.value = 0
         
-
+//        self.observer = self.observe(\.landscapeStatus, options: .new, changeHandler: <#T##(ViewController, NSKeyValueObservedChange<Value>) -> Void#>)
+        determineMyDeviceOrientation()
+        
+        
+    
     }
     
+    @objc func orientationBtn() {
+    
+    
+    }
+    
+    func determineMyDeviceOrientation()
+    {
+        if UIDevice.current.orientation.isLandscape {
+            landscapeModeLayout()
+            landscapeStatus = true
+            print("Device is in landscape mode")
+        } else {
+            portraitModeLayout()
+            landscapeStatus = false
+            print("Device is in portrait mode")
+        }
+    }
 
+    func portraitModeLayout(){
+        landscapeStatus = false
+        self.statusLebel.textColor = UIColor.gray
+        self.videoView.backgroundColor = UIColor.white
+        self.durationLabel.textColor = UIColor.gray
+        self.currentTimeLabel.textColor = UIColor.gray
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.playBtn.tintColor = UIColor.black
+        self.muteBtn.tintColor = UIColor.black
+        self.fullScreenBtn.tintColor = UIColor.black
+        self.backwardBtn.tintColor = UIColor.black
+        self.forwardBtn.tintColor = UIColor.black
+        
+        guard let playerlayer = self.videoView.playerLayer else { return }
+        playerlayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 211 * UIScreen.main.bounds.width/375)
+    }
+    
+    func landscapeModeLayout() {
+        landscapeStatus = true
+        self.statusLebel.textColor = UIColor.white
+        self.videoView.backgroundColor = UIColor.gray
+        self.durationLabel.textColor = UIColor.white
+        self.currentTimeLabel.textColor = UIColor.white
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.playBtn.tintColor = UIColor.white
+        self.muteBtn.tintColor = UIColor.white
+        self.fullScreenBtn.tintColor = UIColor.white
+        self.backwardBtn.tintColor = UIColor.white
+        self.forwardBtn.tintColor = UIColor.white
+        
+        guard let playerlayer = self.videoView.playerLayer else { return }
+        playerlayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        playerlayer.frame = self.view.bounds
+    }
+    
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
         coordinator.animate(alongsideTransition: { context in
             if UIApplication.shared.statusBarOrientation.isLandscape {
                 // activate landscape changes
-                self.statusLebel.textColor = UIColor.white
-                self.videoView.backgroundColor = UIColor.gray
-                self.durationLabel.textColor = UIColor.white
-                self.currentTimeLabel.textColor = UIColor.white
-                self.navigationController?.setNavigationBarHidden(true, animated: false)
-                self.playBtn.tintColor = UIColor.white
-                self.muteBtn.tintColor = UIColor.white
-                self.fullScreenBtn.tintColor = UIColor.white
-                self.backwardBtn.tintColor = UIColor.white
-                self.forwardBtn.tintColor = UIColor.white
-                
-                guard let playerlayer = self.videoView.playerLayer else { return }
-                playerlayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-                playerlayer.frame = self.view.bounds
-                
+                self.landscapeModeLayout()
+
             } else {
                 // activate portrait changes
-                self.statusLebel.textColor = UIColor.gray
-                self.videoView.backgroundColor = UIColor.white
-                self.durationLabel.textColor = UIColor.gray
-                self.currentTimeLabel.textColor = UIColor.gray
-                self.navigationController?.setNavigationBarHidden(false, animated: false)
-                self.playBtn.tintColor = UIColor.black
-                self.muteBtn.tintColor = UIColor.black
-                self.fullScreenBtn.tintColor = UIColor.black
-                self.backwardBtn.tintColor = UIColor.black
-                self.forwardBtn.tintColor = UIColor.black
-                
-                guard let playerlayer = self.videoView.playerLayer else { return }
-                playerlayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 211 * UIScreen.main.bounds.width/375)
+                self.portraitModeLayout()
             }
         })
     }
-    
+
     //status bar style
     override func viewDidAppear(_ animated: Bool) {
         navigationController?.navigationBar.barStyle = .black
