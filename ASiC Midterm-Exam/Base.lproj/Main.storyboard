@@ -84,6 +84,9 @@
                                 </constraints>
                                 <color key="tintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" image="full_screen_button"/>
+                                <connections>
+                                    <action selector="fullscreenAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ouz-le-A2A"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq8-jA-2Uo">
                                 <rect key="frame" x="20" y="514" width="24" height="24"/>

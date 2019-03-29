@@ -55,21 +55,17 @@ class ViewController: UIViewController {
             guard let status = change.newValue else { return }
             if status == true {
                 self.fullScreenBtn.isSelected = true
+                self.landscapeModeLayout()
             } else {
                 self.fullScreenBtn.isSelected = false
+                self.portraitModeLayout()
             }
         }
         
         determineMyDeviceOrientation()
-        
-        
-    
+
     }
     
-    @objc func orientationBtn() {
-    
-    
-    }
     
     func determineMyDeviceOrientation()
     {
@@ -85,7 +81,7 @@ class ViewController: UIViewController {
     }
 
     func portraitModeLayout(){
-        landscapeStatus = false
+//        landscapeStatus = false
         self.statusLebel.textColor = UIColor.gray
         self.videoView.backgroundColor = UIColor.white
         self.durationLabel.textColor = UIColor.gray
@@ -102,7 +98,7 @@ class ViewController: UIViewController {
     }
     
     func landscapeModeLayout() {
-        landscapeStatus = true
+//        landscapeStatus = true
         self.statusLebel.textColor = UIColor.white
         self.videoView.backgroundColor = UIColor.gray
         self.durationLabel.textColor = UIColor.white
@@ -224,6 +220,16 @@ class ViewController: UIViewController {
     
     @IBAction func silderValueChange(_ sender: UISlider) {
         videoView.seek(to: CMTimeMake(value: Int64(sender.value * 1000), timescale: 1000))
+    }
+    
+    @IBAction func fullscreenAction(_ sender: Any) {
+        if fullScreenBtn.isSelected == true {
+            fullScreenBtn.isSelected = false
+//          landscapeModeLayout()
+        } else {
+            fullScreenBtn.isSelected = true
+//            portraitModeLayout()
+        }
     }
     
 }
