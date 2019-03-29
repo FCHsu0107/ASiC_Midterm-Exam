@@ -14,20 +14,34 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var videoView: VideoView!
     
+    @IBOutlet weak var searchBtn: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        JQButton.shared.buttonBorder(button: searchBtn)
     }
-
+    
+    //status bar style
+    override func viewDidAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
+    
     @IBAction func searchAction(_ sender: Any) {
-        if searchTextField.text?.isEmpty == nil {
+        
+        videoView.isHidden = false
+        
+        if searchTextField.text?.isEmpty == true {
             
             videoView.configure(url: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
             videoView.isLoop = true
             videoView.play()
             
+            
+            
         } else {
             guard let searchUrl: String = searchTextField.text else { return }
+            
             videoView.configure(url: searchUrl)
             videoView.isLoop = true
             videoView.play()

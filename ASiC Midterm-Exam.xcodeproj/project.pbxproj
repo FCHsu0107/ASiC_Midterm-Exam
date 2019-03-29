@@ -13,6 +13,8 @@
 		B98248B4224DAD0F00D834DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B98248B3224DAD0F00D834DF /* Assets.xcassets */; };
 		B98248B7224DAD0F00D834DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B98248B5224DAD0F00D834DF /* LaunchScreen.storyboard */; };
 		B98248BF224DAFB000D834DF /* VideoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98248BE224DAFB000D834DF /* VideoView.swift */; };
+		B98248C2224DB93400D834DF /* JQButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98248C1224DB93400D834DF /* JQButton.swift */; };
+		B98248C5224DC44300D834DF /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B98248C4224DC44300D834DF /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B98248B6224DAD0F00D834DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B98248B8224DAD0F00D834DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B98248BE224DAFB000D834DF /* VideoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoView.swift; sourceTree = "<group>"; };
+		B98248C1224DB93400D834DF /* JQButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JQButton.swift; sourceTree = "<group>"; };
+		B98248C4224DC44300D834DF /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +60,33 @@
 		B98248AB224DAD0E00D834DF /* ASiC Midterm-Exam */ = {
 			isa = PBXGroup;
 			children = (
+				B98248C3224DC42900D834DF /* Extension */,
+				B98248C0224DB91400D834DF /* Model */,
 				B98248AC224DAD0E00D834DF /* AppDelegate.swift */,
 				B98248AE224DAD0E00D834DF /* ViewController.swift */,
 				B98248B0224DAD0E00D834DF /* Main.storyboard */,
 				B98248B3224DAD0F00D834DF /* Assets.xcassets */,
 				B98248B5224DAD0F00D834DF /* LaunchScreen.storyboard */,
 				B98248B8224DAD0F00D834DF /* Info.plist */,
-				B98248BE224DAFB000D834DF /* VideoView.swift */,
 			);
 			path = "ASiC Midterm-Exam";
+			sourceTree = "<group>";
+		};
+		B98248C0224DB91400D834DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B98248BE224DAFB000D834DF /* VideoView.swift */,
+				B98248C1224DB93400D834DF /* JQButton.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B98248C3224DC42900D834DF /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B98248C4224DC44300D834DF /* UIImage.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +160,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B98248C2224DB93400D834DF /* JQButton.swift in Sources */,
+				B98248C5224DC44300D834DF /* UIImage.swift in Sources */,
 				B98248BF224DAFB000D834DF /* VideoView.swift in Sources */,
 				B98248AF224DAD0E00D834DF /* ViewController.swift in Sources */,
 				B98248AD224DAD0E00D834DF /* AppDelegate.swift in Sources */,
