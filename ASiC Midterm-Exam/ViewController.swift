@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var searchTextField: UITextField!
     
+    @IBOutlet weak var statusLebel: UILabel!
+    
     @IBOutlet weak var videoView: VideoView!
     
     @IBOutlet weak var searchBtn: UIButton!
@@ -31,8 +33,7 @@ class ViewController: UIViewController {
         
         JQButton.shared.setImage(button: playBtn, normalImage: UIImage.asset(.stop), selectedImage: UIImage.asset(.play_button))
         
-//        videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
-        
+        timeSlider.value = 0
     }
     
     //status bar style
@@ -61,20 +62,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func searchAction(_ sender: Any) {
-        
+        videoView.pause()
         videoView.isHidden = false
         
         if searchTextField.text?.isEmpty == true {
-            
             videoView.configure(url: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
             videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
             addTimeObserver()
-            
             videoView.play()
-            
+
+//            videoView.isHidden = true
+//            statusLebel.text = "請輸入欲播放影片網址"
+    
         } else {
-            guard let searchUrl: String = searchTextField.text else { return }
             
+            guard let searchUrl: String = searchTextField.text else { return }
+            videoView.isHidden = false
             videoView.configure(url: searchUrl)
             videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
             addTimeObserver()
