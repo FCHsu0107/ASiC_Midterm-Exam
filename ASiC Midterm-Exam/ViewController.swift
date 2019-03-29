@@ -63,7 +63,6 @@ class ViewController: UIViewController {
         }
         
         determineMyDeviceOrientation()
-
     }
     
     
@@ -161,14 +160,14 @@ class ViewController: UIViewController {
         videoView.isHidden = false
         
         if searchTextField.text?.isEmpty == true {
-//            statusLebel.isHidden = true
-//            videoView.configure(url: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
-//            videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
-//            addTimeObserver()
-//            videoView.play()
+            statusLebel.isHidden = true
+            videoView.configure(url: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
+            videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
+            addTimeObserver()
+            videoView.play()
 
-            videoView.isHidden = true
-            statusLebel.text = "請輸入欲播放影片網址"
+//            videoView.isHidden = true
+//            statusLebel.text = "請輸入欲播放影片網址"
     
         } else {
             
@@ -223,12 +222,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func fullscreenAction(_ sender: Any) {
-        if fullScreenBtn.isSelected == true {
-            fullScreenBtn.isSelected = false
-//          landscapeModeLayout()
-        } else {
+        if fullScreenBtn.isSelected == false {
+            UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
             fullScreenBtn.isSelected = true
-//            portraitModeLayout()
+            landscapeModeLayout()
+        } else {
+            fullScreenBtn.isSelected = false
+            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+            portraitModeLayout()
         }
     }
     

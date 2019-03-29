@@ -218,10 +218,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="fast_forward" width="19.200000762939453" height="19.200000762939453"/>
-        <image name="full_screen_button" width="19.200000762939453" height="19.200000762939453"/>
-        <image name="play_button" width="19.200000762939453" height="19.200000762939453"/>
-        <image name="rewind" width="19.200000762939453" height="19.200000762939453"/>
-        <image name="volume_up" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="fast_forward" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="full_screen_button" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="play_button" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="rewind" width="51.200000762939453" height="51.200000762939453"/>
+        <image name="volume_up" width="51.200000762939453" height="51.200000762939453"/>
     </resources>
 </document>
