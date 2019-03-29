@@ -35,32 +35,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var forwardBtn: UIButton!
     
-//    @objc dynamic var landscapeStatus = false
-    
-    var observer: NSKeyValueObservation!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         JQButton.shared.buttonBorder(button: searchBtn)
         
-        JQButton.shared.setImage(button: playBtn, normalImage: UIImage.asset(.stop), selectedImage: UIImage.asset(.play_button), color: UIColor.black)
+        JQButton.shared.setImage(button: playBtn, normalImage: UIImage.asset(.stop), selectedImage: UIImage.asset(.play_button))
         
-        JQButton.shared.setImage(button: fullScreenBtn, normalImage: UIImage.asset(.full_screen_button), selectedImage: UIImage.asset(.full_screen_exit), color: UIColor.black)
+        JQButton.shared.setImage(button: fullScreenBtn, normalImage: UIImage.asset(.full_screen_button), selectedImage: UIImage.asset(.full_screen_exit))
         
-        JQButton.shared.setImage(button: muteBtn, normalImage: UIImage.asset(.volume_up), selectedImage: UIImage.asset(.volume_off), color: UIColor.black)
+        JQButton.shared.setImage(button: muteBtn, normalImage: UIImage.asset(.volume_up), selectedImage: UIImage.asset(.volume_off))
         
         timeSlider.value = 0
         
         determineMyDeviceOrientation()
-    }
-    
-    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
-        if fromInterfaceOrientation == .landscapeRight || fromInterfaceOrientation == .landscapeLeft {
-            fullScreenBtn.isSelected = false
-
-        } else {
-            fullScreenBtn.isSelected = true
-        }
     }
     
     override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -68,12 +56,19 @@ class ViewController: UIViewController {
             if UIApplication.shared.statusBarOrientation.isLandscape {
                 // activate landscape changes
                 self.landscapeModeLayout()
-                
+                self.fullScreenBtn.isSelected = true
             } else {
                 // activate portrait changes
                 self.portraitModeLayout()
+                self.fullScreenBtn.isSelected = false
             }
         })
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        guard let playerlayer = self.videoView.playerLayer else { return }
+        playerlayer.frame = videoView.bounds
     }
     
     func determineMyDeviceOrientation() {
@@ -97,9 +92,6 @@ class ViewController: UIViewController {
         self.fullScreenBtn.tintColor = UIColor.black
         self.backwardBtn.tintColor = UIColor.black
         self.forwardBtn.tintColor = UIColor.black
-        
-        guard let playerlayer = self.videoView.playerLayer else { return }
-        playerlayer.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 211 * UIScreen.main.bounds.width/375)
     }
     
     func landscapeModeLayout() {
@@ -113,15 +105,6 @@ class ViewController: UIViewController {
         self.fullScreenBtn.tintColor = UIColor.white
         self.backwardBtn.tintColor = UIColor.white
         self.forwardBtn.tintColor = UIColor.white
-        
-        guard let playerlayer = self.videoView.playerLayer else { return }
-        playerlayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        playerlayer.frame = self.view.bounds
-    }
-
-    //status bar style
-    override func viewDidAppear(_ animated: Bool) {
-        navigationController?.navigationBar.barStyle = .black
     }
     
     func addTimeObserver() {
@@ -149,8 +132,6 @@ class ViewController: UIViewController {
         playBtn.isSelected = false
         muteBtn.isSelected = false
         
-        videoView.isHidden = false
-        
         if searchTextField.text?.isEmpty == true {
             
             //hard code for test
@@ -161,17 +142,14 @@ class ViewController: UIViewController {
             videoView.play()
 
 //            videoView.isHidden = true
-            statusLebel.text = "請輸入欲播放影片網址"
+//            statusLebel.text = "請輸入欲播放影片網址"
     
         } else {
-            
             guard let searchUrl: String = searchTextField.text else { return }
-            videoView.isHidden = false
             statusLebel.isHidden = true
             videoView.configure(url: searchUrl)
             videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
             addTimeObserver()
-            
             videoView.play()
         }
     }
@@ -221,6 +199,5 @@ class ViewController: UIViewController {
             portraitModeLayout()
         }
     }
-    
 }
 
