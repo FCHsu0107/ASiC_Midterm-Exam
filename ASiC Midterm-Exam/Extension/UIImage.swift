@@ -11,16 +11,17 @@ import UIKit
 
 enum ImageAsset: String {
     
-    case Icons_play
-    case Icons_pause
+    case play_button
+    case stop
     
-    case Icons_rewind
-    case Icons_fastForward
+    case rewind
+    case fast_forward
     
-    case Icons_mute
-    case Icons_speaker
+    case volume_off
+    case volume_up
     
-    case Icons_fullscreen
+    case full_screen_button
+    case full_screen_exit
     
 }
 

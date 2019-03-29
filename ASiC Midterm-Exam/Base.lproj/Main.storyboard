@@ -58,7 +58,7 @@
                                     <constraint firstAttribute="width" constant="24" id="4yt-2E-J4a"/>
                                     <constraint firstAttribute="height" constant="24" id="hlV-gZ-Qbd"/>
                                 </constraints>
-                                <state key="normal" image="Icons_play"/>
+                                <state key="normal" image="play_button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axu-kK-ZJI">
                                 <rect key="frame" x="239.5" y="613" width="24" height="24"/>
@@ -66,7 +66,7 @@
                                     <constraint firstAttribute="height" constant="24" id="LP2-4c-Zz9"/>
                                     <constraint firstAttribute="width" constant="24" id="mOf-yA-mBm"/>
                                 </constraints>
-                                <state key="normal" image="Icons_fastForward"/>
+                                <state key="normal" image="fast_forward"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLw-pI-ZFo">
                                 <rect key="frame" x="303.5" y="613" width="24" height="24"/>
@@ -74,7 +74,7 @@
                                     <constraint firstAttribute="height" constant="24" id="Rzg-T4-i6G"/>
                                     <constraint firstAttribute="width" constant="24" id="dF7-D9-Uro"/>
                                 </constraints>
-                                <state key="normal" image="Icons_fullscreen"/>
+                                <state key="normal" image="full_screen_button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aq8-jA-2Uo">
                                 <rect key="frame" x="47.5" y="613" width="24" height="24"/>
@@ -82,7 +82,7 @@
                                     <constraint firstAttribute="width" constant="24" id="9EJ-aO-T8E"/>
                                     <constraint firstAttribute="height" constant="24" id="akY-1z-5GP"/>
                                 </constraints>
-                                <state key="normal" image="Icons_speaker"/>
+                                <state key="normal" image="volume_up"/>
                             </button>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="V7z-fM-8u5">
                                 <rect key="frame" x="59.5" y="553" width="256" height="31"/>
@@ -106,7 +106,7 @@
                                     <constraint firstAttribute="height" constant="24" id="b9t-fl-bFr"/>
                                     <constraint firstAttribute="width" constant="24" id="eqd-6r-6fR"/>
                                 </constraints>
-                                <state key="normal" image="Icons_rewind"/>
+                                <state key="normal" image="rewind"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -177,10 +177,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Icons_fastForward" width="128" height="128"/>
-        <image name="Icons_fullscreen" width="128" height="128"/>
-        <image name="Icons_play" width="128" height="128"/>
-        <image name="Icons_rewind" width="128" height="128"/>
-        <image name="Icons_speaker" width="128" height="128"/>
+        <image name="fast_forward" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="full_screen_button" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="play_button" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="rewind" width="19.200000762939453" height="19.200000762939453"/>
+        <image name="volume_up" width="19.200000762939453" height="19.200000762939453"/>
     </resources>
 </document>
