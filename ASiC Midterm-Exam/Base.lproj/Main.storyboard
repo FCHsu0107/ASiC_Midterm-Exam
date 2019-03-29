@@ -59,6 +59,9 @@
                                     <constraint firstAttribute="height" constant="24" id="hlV-gZ-Qbd"/>
                                 </constraints>
                                 <state key="normal" image="play_button"/>
+                                <connections>
+                                    <action selector="playPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VOi-o5-PZh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Axu-kK-ZJI">
                                 <rect key="frame" x="239.5" y="613" width="24" height="24"/>
@@ -67,6 +70,9 @@
                                     <constraint firstAttribute="width" constant="24" id="mOf-yA-mBm"/>
                                 </constraints>
                                 <state key="normal" image="fast_forward"/>
+                                <connections>
+                                    <action selector="forwardPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="db8-5U-lWP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iLw-pI-ZFo">
                                 <rect key="frame" x="303.5" y="613" width="24" height="24"/>
@@ -87,6 +93,9 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="V7z-fM-8u5">
                                 <rect key="frame" x="59.5" y="553" width="256" height="31"/>
                                 <color key="tintColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="silderValueChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="NUg-Wb-1Us"/>
+                                </connections>
                             </slider>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcW-sD-q9l">
                                 <rect key="frame" x="10" y="559" width="41.5" height="18"/>
@@ -107,6 +116,9 @@
                                     <constraint firstAttribute="width" constant="24" id="eqd-6r-6fR"/>
                                 </constraints>
                                 <state key="normal" image="rewind"/>
+                                <connections>
+                                    <action selector="backwardPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="APd-uH-481"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -144,8 +156,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Viedo Player" id="cic-0R-ggd"/>
                     <connections>
+                        <outlet property="currentTimeLabel" destination="vcW-sD-q9l" id="4Qx-g4-qYP"/>
+                        <outlet property="playBtn" destination="FLt-q3-lBt" id="RYO-7l-Ity"/>
                         <outlet property="searchBtn" destination="Pkf-lr-ESO" id="4cC-6L-ogY"/>
                         <outlet property="searchTextField" destination="az2-op-d58" id="QBY-yg-uCB"/>
+                        <outlet property="timeSlider" destination="V7z-fM-8u5" id="uKf-yN-DD6"/>
+                        <outlet property="totalTimeLabel" destination="lkp-KQ-gYB" id="rDu-ho-SWp"/>
                         <outlet property="videoView" destination="ikJ-Nk-d4G" id="QNe-Mm-Ubr"/>
                     </connections>
                 </viewController>

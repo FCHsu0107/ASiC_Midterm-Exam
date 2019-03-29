@@ -28,12 +28,13 @@ class VideoView: UIView {
         player = AVPlayer(url: videoUrl)
         playerLayer = AVPlayerLayer(player: player)
         playerLayer?.frame = bounds
-        playerLayer?.videoGravity = AVLayerVideoGravity.resize
+        playerLayer?.videoGravity = .resize
         
         guard let playerLayer = self.playerLayer else { return }
+        
         layer.addSublayer(playerLayer)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(reachTheEndOfTheVideo(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
+//        NotificationCenter.default.addObserver(self, selector: #selector(reachTheEndOfTheVideo(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player?.currentItem)
     }
     
     func play() {
@@ -49,6 +50,32 @@ class VideoView: UIView {
     func stop() {
         player?.pause()
         player?.seek(to: CMTime.zero)
+    }
+    
+    func forward(time: Double){
+        guard let player = player else { return }
+        guard let duration = player.currentItem?.duration else { return }
+        let currentTime = CMTimeGetSeconds(player.currentTime())
+        let newTime = currentTime + time
+        
+        if newTime < CMTimeGetSeconds(duration) - 10.0 {
+            let newTime: CMTime = CMTimeMake(value: Int64(newTime * 1000), timescale: 1000)
+            player.seek(to: newTime)
+        } else { return }
+    }
+    
+    func backward(time: Double){
+        guard let player = player else { return }
+        let currentTime = CMTimeGetSeconds(player.currentTime())
+        let newTime = currentTime - time
+        
+        if newTime < 0 {
+            player.seek(to: CMTime.zero)
+            
+        } else {
+            let newTime: CMTime = CMTimeMake(value: Int64(newTime * 1000), timescale: 1000)
+            player.seek(to: newTime)
+        }
     }
     
     @objc func reachTheEndOfTheVideo(_ notification: Notification) {

@@ -20,4 +20,9 @@ class JQButton {
         button.layer.borderColor = UIColor.gray.cgColor
     
     }
+    
+    func setImage(button: UIButton, normalImage: UIImage?, selectedImage: UIImage?){
+        button.setImage(normalImage, for: .normal)
+        button.setImage(selectedImage, for: .selected)
+    }
 }
