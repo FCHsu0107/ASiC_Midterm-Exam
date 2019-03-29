@@ -30,7 +30,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pkf-lr-ESO">
                                 <rect key="frame" x="250" y="79" width="60" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Pkf-lr-ESO" secondAttribute="height" multiplier="2:1" id="Kwc-zN-QhJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="BiE-xy-y6h"/>
+                                    <constraint firstAttribute="width" secondItem="Pkf-lr-ESO" secondAttribute="height" multiplier="2:1" id="vad-l5-0kA"/>
                                 </constraints>
                                 <state key="normal" title="搜尋">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

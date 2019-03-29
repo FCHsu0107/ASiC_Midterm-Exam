@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var forwardBtn: UIButton!
     
-    @objc dynamic var landscapeStatus = false
+//    @objc dynamic var landscapeStatus = false
     
     var observer: NSKeyValueObservation!
     
@@ -51,36 +51,42 @@ class ViewController: UIViewController {
         
         timeSlider.value = 0
         
-        self.observer = self.observe(\.landscapeStatus, options: .new) { (object, change) in
-            guard let status = change.newValue else { return }
-            if status == true {
-                self.fullScreenBtn.isSelected = true
-                self.landscapeModeLayout()
-            } else {
-                self.fullScreenBtn.isSelected = false
-                self.portraitModeLayout()
-            }
-        }
-        
         determineMyDeviceOrientation()
     }
     
+    override func didRotate(from fromInterfaceOrientation: UIInterfaceOrientation) {
+        if fromInterfaceOrientation == .landscapeRight || fromInterfaceOrientation == .landscapeLeft {
+            fullScreenBtn.isSelected = false
+
+        } else {
+            fullScreenBtn.isSelected = true
+        }
+    }
     
-    func determineMyDeviceOrientation()
-    {
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        coordinator.animate(alongsideTransition: { context in
+            if UIApplication.shared.statusBarOrientation.isLandscape {
+                // activate landscape changes
+                self.landscapeModeLayout()
+                
+            } else {
+                // activate portrait changes
+                self.portraitModeLayout()
+            }
+        })
+    }
+    
+    func determineMyDeviceOrientation() {
         if UIDevice.current.orientation.isLandscape {
             landscapeModeLayout()
-            landscapeStatus = true
-            print("Device is in landscape mode")
+            fullScreenBtn.isSelected = true
         } else {
             portraitModeLayout()
-            landscapeStatus = false
-            print("Device is in portrait mode")
+            fullScreenBtn.isSelected = false
         }
     }
 
     func portraitModeLayout(){
-//        landscapeStatus = false
         self.statusLebel.textColor = UIColor.gray
         self.videoView.backgroundColor = UIColor.white
         self.durationLabel.textColor = UIColor.gray
@@ -97,7 +103,6 @@ class ViewController: UIViewController {
     }
     
     func landscapeModeLayout() {
-//        landscapeStatus = true
         self.statusLebel.textColor = UIColor.white
         self.videoView.backgroundColor = UIColor.gray
         self.durationLabel.textColor = UIColor.white
@@ -112,19 +117,6 @@ class ViewController: UIViewController {
         guard let playerlayer = self.videoView.playerLayer else { return }
         playerlayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         playerlayer.frame = self.view.bounds
-    }
-    
-    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
-        coordinator.animate(alongsideTransition: { context in
-            if UIApplication.shared.statusBarOrientation.isLandscape {
-                // activate landscape changes
-                self.landscapeModeLayout()
-
-            } else {
-                // activate portrait changes
-                self.portraitModeLayout()
-            }
-        })
     }
 
     //status bar style
@@ -160,6 +152,8 @@ class ViewController: UIViewController {
         videoView.isHidden = false
         
         if searchTextField.text?.isEmpty == true {
+            
+            //hard code for test
             statusLebel.isHidden = true
             videoView.configure(url: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4")
             videoView.player?.currentItem?.addObserver(self, forKeyPath: "duration", options: [.new, .initial], context: nil)
@@ -167,7 +161,7 @@ class ViewController: UIViewController {
             videoView.play()
 
 //            videoView.isHidden = true
-//            statusLebel.text = "請輸入欲播放影片網址"
+            statusLebel.text = "請輸入欲播放影片網址"
     
         } else {
             
@@ -184,21 +178,16 @@ class ViewController: UIViewController {
     
     @IBAction func playPressed(_ sender: Any) {
         if playBtn.isSelected == true {
-            
             videoView.play()
             playBtn.isSelected = false
-            
         } else {
-            
             videoView.pause()
             playBtn.isSelected = true
-            
         }
     }
     
     @IBAction func muteBtn(_ sender: Any) {
         guard let player = videoView.player else { return }
-        
         if muteBtn.isSelected == true {
             player.isMuted = false
             muteBtn.isSelected = false
@@ -223,8 +212,8 @@ class ViewController: UIViewController {
     
     @IBAction func fullscreenAction(_ sender: Any) {
         if fullScreenBtn.isSelected == false {
-            UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
             fullScreenBtn.isSelected = true
+            UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
             landscapeModeLayout()
         } else {
             fullScreenBtn.isSelected = false
